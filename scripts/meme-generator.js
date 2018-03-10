@@ -7,6 +7,16 @@
       root.MemeGenerator = factory()
   }
 }(this, function () {
+  var DOM = {
+    query: function (selector, context) {
+      context = context || document
+      return context.querySelector(selector)
+    },
+    create: function (tagName) {
+      return document.createElement(tagName)
+    }
+  }
+
   function meme (data) {
     var width, height, x, y, text = '', ctx, currentFrame = 0
     var oneFramePeriod = data.period / data.totalFrame
@@ -77,8 +87,8 @@
       superGif.move_to(0)
       gif.render()
       gif.on('finished', function (blob) {
-        finish()
-        window.open(URL.createObjectURL(blob))
+        var url = URL.createObjectURL(blob)
+        finish(url)
       })
     }
     
@@ -87,28 +97,43 @@
     }
 
     function generateForm (texts) {
-      var $form = document.querySelector('.form')
+      var $form = DOM.query('.form')
+      // perf: fragment that contains input list
       var $fragment = document.createDocumentFragment()
       for (var i = 0; i < texts.length; i++) {
         $fragment.appendChild(createInputField(i))
       }
       $form.appendChild($fragment)
-      var $btnWrapper = document.createElement('div')
+      // gif wrapper after generated
+      var $gifWrapper = DOM.create('div')
+      $gifWrapper.className = 'gif-wrapper'
+      $gifWrapper.innerHTML = '<label>已生成！右键保存</label>'
+      var $gif = DOM.create('img')
+      $gifWrapper.appendChild($gif)
+      $form.appendChild($gifWrapper)
+      // button
+      var $btnWrapper = DOM.create('div')
       $btnWrapper.className = 'input-control'
-      var $button = document.createElement('button')
+      var $button = DOM.create('button')
       $button.className = 'btn'
       $button.textContent = '生成表情包'
+      
       $button.addEventListener('click', function (evt) {
         $button.textContent = '正在生成中'
         $button.disabled = true
         evt.preventDefault()
-        generateGif(function () {
+        generateGif(function (url) {
           $button.textContent = '生成表情包'
           $button.disabled = false
+          $gif.src = url
+          $gif.onload = function () {
+            $gifWrapper.style.display = 'block'
+          }
         })
       })
       $btnWrapper.appendChild($button)
       $form.appendChild($btnWrapper)
+
       $form.addEventListener('input', function (evt) {
         var target = evt.target
         if (target.tagName === 'INPUT') {
@@ -116,11 +141,11 @@
         }
       })
       function createInputField (index) {
-        var $wrapper = document.createElement('div')
+        var $wrapper = DOM.create('div')
         $wrapper.className = 'input-control'
-        var $label = document.createElement('label')
+        var $label = DOM.create('label')
         $label.textContent = '第' + index + '句'
-        var $input = document.createElement('input')
+        var $input = DOM.create('input')
         $input.setAttribute('type', 'text')
         $input.setAttribute('data-index', index)
         $input.value = texts[index].text

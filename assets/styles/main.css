@@ -15,7 +15,7 @@ input, button {
   font-weight: bold;
   line-height: 2.4;
 }
-.gif-wrapper {
+.canvas-wrapper {
   width: 300px;
   height: 168px;
   margin: 0 auto;
@@ -58,4 +58,7 @@ input, button {
 .form .btn:hover {
   background-color: #42b983;
   color: #fff;
+}
+.gif-wrapper {
+  display: none;
 }
