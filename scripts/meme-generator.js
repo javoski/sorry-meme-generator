@@ -87,6 +87,7 @@
       superGif.move_to(0)
       gif.render()
       gif.on('finished', function (blob) {
+        console.log(blob.size)
         var url = URL.createObjectURL(blob)
         finish(url)
       })
