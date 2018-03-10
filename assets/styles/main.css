@@ -1,0 +1,61 @@
+body {
+  font-size: 16px;
+}
+input, button {
+  outline: none;
+}
+#app {
+  margin: 0 auto 50px auto;
+  max-width: 500px;
+  text-align: center;
+  color: #42b983;
+}
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 2.4;
+}
+.gif-wrapper {
+  width: 300px;
+  height: 168px;
+  margin: 0 auto;
+}
+.form {
+  margin: 20px auto;
+  width: 300px;
+}
+.form .input-control {
+  margin: 12px 0;
+}
+.form label {
+  text-align: left;
+  display: block;
+  font-size: 1.1rem;
+}
+.input-control input {
+  width: 100%;
+  font-size: .9rem;
+  line-height: 1.9;
+  border: 1px solid #42b983;
+  padding-left: 5px;
+}
+.form .btn {
+  display: block;
+  width: 100%;
+  font-size: 1.2rem;
+  letter-spacing: 0.5em;
+  min-width: 8em;
+  background-color: #fff;
+  color: #42b983;
+  box-sizing: border-box;
+  border: 1px solid #4fc08d;
+  border-radius: 2rem;
+  cursor: pointer;
+  line-height: 2rem;
+  margin-top: 20px;
+  transition: all .7s;
+}
+.form .btn:hover {
+  background-color: #42b983;
+  color: #fff;
+}

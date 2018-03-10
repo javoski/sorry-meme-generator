@@ -1,0 +1,8 @@
+{
+  "name": "meme-generator",
+  "version": "0.0.1",
+  "description": "Gif meme generator",
+  "main": "index.js",
+  "author": "javoski",
+  "license": "MIT"
+}
