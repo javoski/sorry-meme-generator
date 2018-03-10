@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://vuejs.org" target="_blank" rel="noopener noreferrer">
+  <a href="https://javoski.github.io/sorry-meme-generator" target="_blank" rel="noopener noreferrer">
   <img width="300" src="./assets/images/example.gif" alt="Example Gif">
   </a>
 </p>
