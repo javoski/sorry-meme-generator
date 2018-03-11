@@ -7,6 +7,7 @@
       root.MemeGenerator = factory()
   }
 }(this, function () {
+  
   var DOM = {
     query: function (selector, context) {
       context = context || document
@@ -17,7 +18,14 @@
     }
   }
 
+  function canvas2Image (canvas) {
+    var $img = DOM.create('img')
+    $img.src = canvas.toDataURL()
+    return $img
+  }
+
   function meme (data) {
+    generateForm(data.texts)
     var width, height, x, y, text = '', ctx, currentFrame = 0
     var oneFramePeriod = data.period / data.totalFrame
     var texts = data.texts
@@ -41,6 +49,7 @@
       progressbar_background_color: 'rgba(255, 255, 255, 0.5)',
       progressbar_foreground_color: '#41b882'
     })
+
     function onStep (ctx) {
       var index = frameIndexes[currentFrame]
       var text = ''
@@ -66,10 +75,10 @@
       height = canvas.height
       x = width / 2
       y = height - 12
-      generateForm(data.texts)
     }
+
     superGif.load_url(data.url, onLoaded)
-    var $genBtn = document.querySelector('#btn-gen')
+
     function generateGif (finish) {
       var gif = new GIF({
         workers: 2,

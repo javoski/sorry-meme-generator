@@ -1,6 +1,7 @@
 body {
   font-size: 16px;
 }
+
 input, button {
   outline: none;
 }
@@ -10,6 +11,7 @@ input, button {
   text-align: center;
   color: #42b983;
 }
+
 .title {
   font-size: 2rem;
   font-weight: bold;
@@ -38,6 +40,8 @@ input, button {
   line-height: 1.9;
   border: 1px solid #42b983;
   padding-left: 5px;
+  box-shadow: none;
+  border-radius: none;
 }
 .form .btn {
   display: block;
