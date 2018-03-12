@@ -85,12 +85,14 @@
         workerScript: './scripts/libs/gif.worker.js'
       })
       currentFrame = 0
+      // var images = Array(data.totalFrame)
       for (var i = 0; i < data.totalFrame; i++) {
         superGif.move_to(i)
         gif.addFrame(superGif.get_canvas(), {
           copy: true,
           delay: oneFramePeriod
         })
+        // images[i] = superGif.get_canvas().toDataURL('image/jpeg', 0.1)
       }
       currentFrame = 0
       superGif.move_to(0)
@@ -100,6 +102,16 @@
         var url = URL.createObjectURL(blob)
         finish(url)
       })
+      // gifshot.createGIF({
+      //   images: images,
+      //   gifWidth: width,
+      //   gifHeight: height,
+      //   numWorkers: 4
+      // }, function (obj) {
+      //   if (!obj.error) {
+      //     finish(obj.image)
+      //   }
+      // })
     }
     
     function onInput (index, value) {
