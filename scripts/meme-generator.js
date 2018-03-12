@@ -173,6 +173,9 @@
         $input.value = texts[index].text
         $wrapper.appendChild($label)
         $wrapper.appendChild($input)
+        $input.addEventListener('focus', function (e) {
+         e.target.select()
+        })
         return $wrapper
       }
     }
